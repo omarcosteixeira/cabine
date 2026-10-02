@@ -1,0 +1,16 @@
+{
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        { "key": "Permissions-Policy", "value": "camera=(self), microphone=(), web-share=(self)" },
+        { "key": "X-Content-Type-Options", "value": "nosniff" }
+      ]
+    },
+    {
+      "source": "/sw.js",
+      "headers": [{ "key": "Cache-Control", "value": "no-cache" }]
+    }
+  ],
+  "rewrites": [{ "source": "/((?!.*\\.).*)", "destination": "/index.html" }]
+}

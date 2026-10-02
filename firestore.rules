@@ -1,0 +1,33 @@
+rules_version = '2';
+
+// Regras de referência para o banco usado pelo app.
+// Publique no Console do Firebase: Firestore Database > Regras.
+//
+// Este projeto não tem login de usuário: o painel admin é protegido por uma
+// senha verificada no navegador. Por isso as regras liberam leitura e escrita
+// para qualquer cliente web autenticado apenas pelo domínio autorizado.
+// Se precisar de controle de acesso real, ative o Firebase Authentication
+// (por exemplo, Authentication anônimo ou por e-mail) e troque
+// "allow read, write: if true;" por uma verificação de request.auth != null.
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /events/{eventId} {
+      allow read: if true;
+      allow create, update: if true
+        && request.resource.data.name is string
+        && request.resource.data.name.size() > 0
+        && request.resource.data.name.size() <= 120
+        && request.resource.data.id == eventId;
+      allow delete: if true;
+    }
+
+    match /sessions/{sessionId} {
+      allow read: if true;
+      allow create, update: if true
+        && request.resource.data.eventId is string
+        && request.resource.data.strip is string
+        && request.resource.data.strip.size() < 1000000;
+      allow delete: if true;
+    }
+  }
+}
