@@ -1,0 +1,13 @@
+{
+  "id": "/",
+  "name": "Cabine - Sua fotocabine digital",
+  "short_name": "Cabine",
+  "description": "Três poses, uma boa memória. Tirinhas personalizadas de 5 x 15 cm.",
+  "lang": "pt-BR",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#fafaf7",
+  "theme_color": "#fafaf7",
+  "icons": [{ "src": "/icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" }]
+}
